@@ -15,31 +15,22 @@ class Student
   end
 
   def self.find_by_name(name)
-    # find the student in the database given a name
-    # return a new instance of the Student class
-    
-   sql = "SELECT * FROM students WHERE name = ?"
+    sql = "SELECT * FROM students WHERE name = ?"
     student_row = DB[:conn].execute(sql, name)[0]
     self.new_from_db(student_row)
   end
   
   def save
-    sql = <<-SQL
-      INSERT INTO students (name, grade) 
-      VALUES (?, ?)
-    SQL
-
+    sql = "INSERT INTO students (name, grade) 
+      VALUES (?, ?)"
     DB[:conn].execute(sql, self.name, self.grade)
   end
   
   def self.create_table
-    sql = <<-SQL
-    CREATE TABLE IF NOT EXISTS students (
+    sql = "CREATE TABLE IF NOT EXISTS students (
       id INTEGER PRIMARY KEY,
       name TEXT,
-      grade TEXT
-    )
-    SQL
+      grade TEXT)"
 
     DB[:conn].execute(sql)
   end
