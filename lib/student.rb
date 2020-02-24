@@ -56,4 +56,6 @@ class Student
     sql = "SELECT * FROM students WHERE grade = 9"
     DB[:conn].execute(sql)
   end
+  
+  def self.
 end
