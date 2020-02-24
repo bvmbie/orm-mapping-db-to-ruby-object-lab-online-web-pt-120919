@@ -21,16 +21,9 @@ class Student
     # find the student in the database given a name
     # return a new instance of the Student class
     
-    sql = <<-SQL
-      SELECT *
-      FROM students
-      WHERE name = ?
-      LIMIT 1
-    SQL
- 
-    DB[:conn].execute(sql, name).map do |row|
-      self.new_from_db(row)
-    end
+   sql = "SELECT * FROM students WHERE name = ?"
+    student_row = DB[:conn].execute(sql, name)[0]
+    self.new_from_db(student_row)
   end
   
   def save
