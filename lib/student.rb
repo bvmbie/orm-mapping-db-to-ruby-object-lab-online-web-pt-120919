@@ -59,5 +59,7 @@ class Student
     sql = "SELECT * FROM students WHERE grade = 10 LIMIT 1"
     DB[:conn].execute(sql)
   end
+  
+  def 
 
 end
